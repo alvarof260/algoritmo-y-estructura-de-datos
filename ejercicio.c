@@ -12,7 +12,7 @@ lista *crearLista();
 void imprimirLista(lista *head);
 int esListaVacia(lista *e);
 int primerElemento(lista *e);
-lista *insertarElemento(lista *e, int dato);
+/* lista *insertarElemento(lista *e, int dato); */
 void insertarValor(lista *e, int dato, int posicion);
 lista *eliminarElemento(lista *e, int posicion);
 int longitudLista(lista *e);
