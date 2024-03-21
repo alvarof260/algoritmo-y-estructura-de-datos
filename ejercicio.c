@@ -16,6 +16,7 @@ lista *insertarElemento(lista *e, int dato);
 void insertarValor(lista *e, int dato, int posicion);
 lista *eliminarElemento(lista *e, int posicion);
 int longitudLista(lista *e);
+int perteneceValor(lista *e, int dato);
 
 void main() {
     // Crear una lista vacía
@@ -42,6 +43,7 @@ void main() {
     listaNumero = eliminarElemento(listaNumero, 1);
     printf("luego de eliminar el valor en la posicion 1\n");
     imprimirLista(listaNumero);
+    perteneceValor(listaNumero, 20) ? printf("El valor 20 pertenece a la lista\n") : printf("El valor 20 no pertenece a la lista\n");
 
     // Liberar la memoria de la lista
     free(listaNumero);
@@ -127,6 +129,7 @@ lista *eliminarElemento(lista *e, int posicion) {
     return e;
 }
 
+// Función para obtener la longitud de la lista
 int longitudLista(lista *e) {
     int longitud = 0;
     lista *aux = e;
@@ -135,4 +138,16 @@ int longitudLista(lista *e) {
         aux = aux->sig;
     }
     return longitud;
+}
+
+// Función para comprobar si un valor pertenece a la lista
+int perteneceValor(lista *e, int dato) {
+    lista *aux = e;
+    while(aux != NULL) {
+        if(aux->dato == dato) {
+            return 1;
+        }
+        aux = aux->sig;
+    }
+    return 0;
 }
