@@ -2,9 +2,7 @@
 #include <stdlib.h>
 
 struct nodo {
-    // Dato que almacena el nodo
     int dato;
-    // Apuntador a la estructura nodo
     struct nodo *sig;
 }typedef lista;
 
@@ -14,30 +12,29 @@ int esListaVacia(lista *e);
 int primerElemento(lista *e);
 lista *insertarElemento(lista *e, int dato);
 void insertarValor(lista *e, int dato, int posicion);
+lista *eliminarElemento(lista *e, int posicion);
 
 void main() {
     lista *listaNumero = crearLista();
-    int numero;
-    imprimirLista(listaNumero);
     esListaVacia(listaNumero) ? printf("La lista esta vacia\n") : printf("La lista no esta vacia\n");
-    printf("El primer elemento de la lista es: %d\n", primerElemento(listaNumero));
-    listaNumero = insertarElemento(listaNumero, 5);
+    listaNumero = insertarElemento(listaNumero, 10);
+    listaNumero = insertarElemento(listaNumero, 20);
+    printf("La lista tiene estos elementos\n");
     imprimirLista(listaNumero);
-    printf("El primer elemento de la lista es: %d\n", primerElemento(listaNumero));
-    insertarValor(listaNumero, 10, 0);
+    insertarValor(listaNumero, 30, 1);
+    printf("luego de insertar el valor 30 en la posicion 1\n");
     imprimirLista(listaNumero);
+    listaNumero = eliminarElemento(listaNumero, 1);
+    printf("luego de eliminar el valor en la posicion 1\n");
+    imprimirLista(listaNumero);
+    free(listaNumero);
     printf("Hola mundo\n");
 }
 
-// Función que crea una lista vacía
 lista *crearLista() {
-    lista *head = (lista *)malloc(sizeof(lista));
-    head->dato = 0;
-    head->sig = NULL;
-    return head;
+    return NULL;
 }
 
-// Función que imprime los elementos de la lista
 void imprimirLista(lista *head) {
     lista *aux = head;
     while (aux != NULL) {
@@ -46,12 +43,10 @@ void imprimirLista(lista *head) {
     }
 }
 
-// Función que verifica si la lista está vacía
 int esListaVacia(lista *e) {
-    return (e->dato == 0 && e->sig == NULL);
+    return e == NULL;
 }
 
-// Función que retorna el primer elemento de la lista
 int primerElemento(lista *e) {
     if(esListaVacia(e)) {
         printf("La lista esta vacia\n");
@@ -60,7 +55,6 @@ int primerElemento(lista *e) {
     return e->dato;
 }
 
-// Función que inserta un elemento en la lista en la primera posición
 lista *insertarElemento(lista *e, int dato) {
     lista *nuevo = (lista *)malloc(sizeof(lista));
     nuevo->dato = dato;
@@ -68,10 +62,42 @@ lista *insertarElemento(lista *e, int dato) {
     return nuevo;
 }
 
-// Función que inserta un valor a un elemento en una posición específica de la lista 
 void insertarValor(lista *e, int dato, int posicion) {
+    lista *aux = e;
     for(int i = 0; i < posicion; i++) {
-        e = e->sig;
+        if(aux == NULL) {
+            printf("La posicion es mayor que la longitud de la lista\n");
+            return;
+        }
+        aux = aux->sig;
     }
-    e->dato = dato;
+    if(aux != NULL) {
+        aux->dato = dato;
+    }
+}
+
+lista *eliminarElemento(lista *e, int posicion) {
+    if(esListaVacia(e)) {
+        printf("La lista esta vacia\n");
+        return e;
+    }
+    if (posicion == 0) {
+        lista *siguienteNodo = e->sig;
+        free(e);
+        return siguienteNodo;
+    }
+
+    lista *nodoActual = e;
+    for(int i = 0; i < posicion - 1; i++) {
+        if (nodoActual->sig == NULL) {
+            printf("La posicion es mayor que la longitud de la lista\n");
+            return e;
+        }
+        nodoActual = nodoActual->sig;
+    }
+
+    lista *nodoAEliminar = nodoActual->sig;
+    nodoActual->sig = nodoAEliminar->sig;
+    free(nodoAEliminar);
+    return e;
 }
