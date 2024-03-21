@@ -11,11 +11,14 @@ struct nodo {
 lista *crearLista();
 void imprimirLista(lista *head);
 int esListaVacia(lista *e);
+int primerElemento(lista *e);
 
 void main() {
     lista *listaNumero = crearLista();
+    int numero;
     imprimirLista(listaNumero);
     esListaVacia(listaNumero) ? printf("La lista esta vacia\n") : printf("La lista no esta vacia\n");
+    printf("El primer elemento de la lista es: %d\n", primerElemento(listaNumero));
     printf("Hola mundo\n");
 }
 
@@ -39,4 +42,9 @@ void imprimirLista(lista *head) {
 // Función que verifica si la lista está vacía
 int esListaVacia(lista *e) {
     return e->dato == 0;
+}
+
+// Función que retorna el primer elemento de la lista
+int primerElemento(lista *e) {
+    return e->dato;
 }
