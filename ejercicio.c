@@ -13,6 +13,7 @@ void imprimirLista(lista *head);
 int esListaVacia(lista *e);
 int primerElemento(lista *e);
 lista *insertarElemento(lista *e, int dato);
+void insertarValor(lista *e, int dato, int posicion);
 
 void main() {
     lista *listaNumero = crearLista();
@@ -23,6 +24,8 @@ void main() {
     listaNumero = insertarElemento(listaNumero, 5);
     imprimirLista(listaNumero);
     printf("El primer elemento de la lista es: %d\n", primerElemento(listaNumero));
+    insertarValor(listaNumero, 10, 0);
+    imprimirLista(listaNumero);
     printf("Hola mundo\n");
 }
 
@@ -63,4 +66,12 @@ lista *insertarElemento(lista *e, int dato) {
     nuevo->dato = dato;
     nuevo->sig = e;
     return nuevo;
+}
+
+// Función que inserta un valor a un elemento en una posición específica de la lista 
+void insertarValor(lista *e, int dato, int posicion) {
+    for(int i = 0; i < posicion; i++) {
+        e = e->sig;
+    }
+    e->dato = dato;
 }
