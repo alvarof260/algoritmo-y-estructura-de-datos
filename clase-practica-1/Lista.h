@@ -23,7 +23,6 @@ void mostrar(Nodo *l)
     Nodo *aux = l;
     if (esListaVacia(aux))
     {
-        printf("La lista esta vacia\n");
         return;
     }
     while(aux != NULL)
@@ -37,7 +36,6 @@ void primerElemento(Nodo *l)
 {
     if(esListaVacia(l))
     {
-        printf("La lista esta vacia\n");
         return;
     }
     printf("El primer elemento de la lista es: %d\n", l->dato);
@@ -49,4 +47,15 @@ void insertar(Nodo **l, Item x)
     nuevo->dato = x;
     nuevo->sig = *l;
     *l = nuevo;
+}
+
+void borrar(Nodo **l)
+{
+    if(esListaVacia(*l))
+    {
+        return;
+    }
+    Nodo *aux = *l;
+    *l = (*l)->sig;
+    free(aux);
 }

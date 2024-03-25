@@ -12,5 +12,7 @@ int main()
     insertar(&head, 30);
     mostrar(head);
     primerElemento(head);
+    borrar(&head);
+    mostrar(head);
     return 0;
 }
