@@ -86,6 +86,8 @@ int pertenece(Nodo *l, Item x)
     return 0;
 }
 
+// inserta un valor dado en la posición K-ésima de la lista si es que existe, caso contrario 
+// se inserta al final.
 void insertarK(Nodo **l, Item x, int k)
 {
     if(k == 0)

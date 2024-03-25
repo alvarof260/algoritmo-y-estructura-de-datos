@@ -8,11 +8,11 @@ int main()
     esListaVacia(head)
         ? printf("La lista esta vacia\n")
         : printf("La lista no esta vacia\n");
+    insertarK(&head, 50, 2);
     insertar(&head, 40);
     insertar(&head, 30);
     insertar(&head, 20);
     insertar(&head, 10);
-    insertarK(&head, 50, 2);
     mostrar(head);
     printf("La lista tiene %d elementos\n", longitud(head));
     primerElemento(head);
