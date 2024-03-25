@@ -25,7 +25,7 @@ void mostrar(Nodo *l)
     {
         return;
     }
-    while(aux != NULL)
+    while (aux != NULL)
     {
         printf("%d \n", aux->dato);
         aux = aux->sig;
@@ -34,7 +34,7 @@ void mostrar(Nodo *l)
 
 void primerElemento(Nodo *l)
 {
-    if(esListaVacia(l))
+    if (esListaVacia(l))
     {
         return;
     }
@@ -51,11 +51,37 @@ void insertar(Nodo **l, Item x)
 
 void borrar(Nodo **l)
 {
-    if(esListaVacia(*l))
+    if (esListaVacia(*l))
     {
         return;
     }
     Nodo *aux = *l;
     *l = (*l)->sig;
     free(aux);
+}
+
+int longitud(Nodo *l)
+{
+    int cont = 0;
+    Nodo *aux = l;
+    while (aux != NULL)
+    {
+        cont++;
+        aux = aux->sig;
+    }
+    return cont;
+}
+
+int pertenece(Nodo *l, Item x)
+{
+    Nodo *aux = l;
+    while (aux != NULL)
+    {
+        if (aux->dato == x)
+        {
+            return 1;
+        }
+        aux = aux->sig;
+    }
+    return 0;
 }

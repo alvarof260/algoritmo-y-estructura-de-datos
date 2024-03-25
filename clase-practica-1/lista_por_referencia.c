@@ -11,8 +11,12 @@ int main()
     insertar(&head, 40);
     insertar(&head, 30);
     mostrar(head);
+    printf("La lista tiene %d elementos\n", longitud(head));
     primerElemento(head);
     borrar(&head);
+    pertenece(head, 40)
+        ? printf("El elemento 40 pertenece a la lista\n")
+        : printf("El elemento 40 no pertenece a la lista\n");
     mostrar(head);
     return 0;
 }
