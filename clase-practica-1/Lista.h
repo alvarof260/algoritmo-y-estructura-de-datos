@@ -85,3 +85,25 @@ int pertenece(Nodo *l, Item x)
     }
     return 0;
 }
+
+void insertarK(Nodo **l, Item x, int k)
+{
+    if(k == 0)
+    {
+        insertar(l,x);
+        return;
+    }
+    Nodo *nuevo = (Nodo *)malloc(sizeof(Nodo));
+    nuevo->dato = x;
+    Nodo *aux = *l;
+    for (int i = 0; i < k - 1; i++)
+    {
+        if (aux == NULL)
+        {
+            return;
+        }
+        aux = aux->sig;
+    }
+    nuevo->sig = aux->sig;
+    aux->sig = nuevo;
+}
