@@ -10,12 +10,14 @@ struct Nodo
 
 typedef struct Nodo* Lista;
 
-void crearLista(Lista l)
+void crearLista(Lista *l)
 {
-    l = NULL;
+    *l = NULL;
 }
 
 int esListaVacia(Lista l)
 {
     return l == NULL;
 }
+
+
